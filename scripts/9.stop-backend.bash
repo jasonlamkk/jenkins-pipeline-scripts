@@ -5,5 +5,5 @@ if [ $running -eq 0 ]; then
     echo "docker instance stopped"
 else
     docker stop ${BACKEND_INSTANCE}
-    docker rm ${BACKEND_INSTANCE}
+    docker rm ${BACKEND_INSTANCE} || true
 fi
