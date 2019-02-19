@@ -1,5 +1,5 @@
 env.PROJECT_ROOT="/var/jenkins_home/workspace/pipeline-demo"
-env.HOST_ROOT="/private/pipeline-demo"
+env.HOST_ROOT="/home/pipeline-demo"
 
 env.D_NAME="jenkins-pipeline-scripts"
 env.D_REPO="https://github.com/jasonlamkk/${D_NAME}.git"
