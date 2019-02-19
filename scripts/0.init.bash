@@ -11,6 +11,12 @@ if [ $hasJq -eq 0 ]; then
     apk add jq
 fi
 
+hasRsync=`which rsync | wc -l`
+
+if [ $hasRsync -eq 0 ]; then
+    apk add rsync
+fi
+
 echo "another example, prepare some folder"
 
 mkdir -p ${HOST_ROOT}/${BACKEND_FOLDER}
@@ -21,7 +27,7 @@ echo "one more example, ensure the deploy target's ssh key is put into the known
 
 my_dir="$(dirname $0)"
 source "$my_dir/fetch-ip.bash"
-ssh-keyscan -t rsa ${DEPLOY_HOST} > ~/.ssh/known_hosts
+ssh-keyscan -t rsa ${DEPLOY_HOST} >> ~/.ssh/known_hosts
 
 ssh -T ${BACKEND_DEPLOY_USER}@${DEPLOY_HOST} mkdir -p ${BACKEND_DEPLOY_PATH}
 
