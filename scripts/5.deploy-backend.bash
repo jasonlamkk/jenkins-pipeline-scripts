@@ -4,10 +4,11 @@ my_dir="$(dirname $0)"
 source "$my_dir/fetch-ip.bash"
 
 #check if the path is empty, which likely a misconfiguration
-safecheck=`echo ${FRONTEND_DEPLOY_PATH} | wc -c`
+safecheck=`echo ${BACKEND_DEPLOY_PATH} | wc -c`
 
 if [ $safecheck -gt 10 ]; then
 
+  echo "deploying ${PROJECT_ROOT}/${BACKEND_FOLDER}/. \n with account ${BACKEND_DEPLOY_USER} \n to server ${DEPLOY_HOST} "
   rsync -au -e ssh --exclude './.env' ${PROJECT_ROOT}/${BACKEND_FOLDER}/. ${BACKEND_DEPLOY_USER}@${DEPLOY_HOST}:${BACKEND_DEPLOY_PATH}
 
   # curl --request POST \
@@ -16,5 +17,5 @@ if [ $safecheck -gt 10 ]; then
   #   --data "{\"text\": \"Backend Status: \nBranch: ${BACKEND_BRANCH}\nDeployed to ${BACKEND_DEPLOY_PATH}. \"}"
 
 else
-    echo "invalid deploy path ${FRONTEND_DEPLOY_PATH}"
+  echo "invalid deploy path ${BACKEND_DEPLOY_PATH}"
 fi

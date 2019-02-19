@@ -12,6 +12,7 @@ docker exec -i ${FRONTEND_INSTANCE} bash run-yarn-in-docker.bash
 safecheck=`echo ${FRONTEND_DEPLOY_PATH} | wc -c`
 if [ $safecheck -gt 10 ]; then
 
+  echo "deploying ${PROJECT_ROOT}/${FRONTEND_FOLDER}/build/. \n with account ${FRONTEND_DEPLOY_USER} \n to server ${DEPLOY_HOST} "
   rsync -au -e ssh --exclude './.env' ${PROJECT_ROOT}/${FRONTEND_FOLDER}/build/. ${FRONTEND_DEPLOY_USER}@${DEPLOY_HOST}:${FRONTEND_DEPLOY_PATH}
 
 #   curl --request POST \
