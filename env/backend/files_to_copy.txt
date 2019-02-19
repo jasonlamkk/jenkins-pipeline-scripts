@@ -1,0 +1,2 @@
+env/backend/.env;/data/.env
+env/backend/db.json;/data/db.json
